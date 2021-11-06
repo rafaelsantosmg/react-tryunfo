@@ -73,7 +73,7 @@ class App extends React.Component {
               onSaveButtonClick={ onSaveButtonClick }
             />
           </div>
-          <div className="preview">
+          <div className="preview-card">
             <h2>Preview</h2>
             <Card
               cardName={ cardName }
