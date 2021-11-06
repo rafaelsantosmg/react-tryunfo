@@ -17,6 +17,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      saveCards: [],
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
@@ -36,7 +37,38 @@ class App extends React.Component {
   }
 
   onSaveButtonClick(event) {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+    const cardObj = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
     event.preventDefault();
+    this.setState((preventDefault) => ({
+      saveCards: preventDefault.saveCards.concat(cardObj),
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      isSaveButtonDisabled: true,
+    }));
   }
 
   saveValidate() {
@@ -72,6 +104,7 @@ class App extends React.Component {
         cardTrunfo,
         hasTrunfo,
         isSaveButtonDisabled,
+        saveCards,
       },
       onInputChange,
       onSaveButtonClick,
@@ -113,6 +146,20 @@ class App extends React.Component {
             />
           </div>
         </main>
+        <div className="cards">
+          { onSaveButtonClick
+            && saveCards.map((card) => (<Card
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardTrunfo={ card.cardTrunfo }
+              cardRare={ card.cardRare }
+            />)) }
+        </div>
       </div>
     );
   }
