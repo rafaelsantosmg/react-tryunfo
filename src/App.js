@@ -19,6 +19,8 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
     };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.saveValidate = this.saveValidate.bind(this);
   }
 
   onInputChange({ target }) {
@@ -26,11 +28,35 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? checked : target.value;
     this.setState({
       [name]: value,
+    }, () => {
+      this.setState({
+        isSaveButtonDisabled: this.saveValidate(),
+      });
     });
   }
 
-  onSaveButtonClick() {
-    // Código
+  onSaveButtonClick(event) {
+    event.preventDefault();
+  }
+
+  saveValidate() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+    const maxCardAttr = 90;
+    const maxAttr = 210;
+    if (!cardName || !cardDescription || !cardImage || !cardRare) return true;
+    if (Number(cardAttr1) > maxCardAttr || Number(cardAttr1) < 0) return true;
+    if (Number(cardAttr2) > maxCardAttr || Number(cardAttr2) < 0) return true;
+    if (Number(cardAttr3) > maxCardAttr || Number(cardAttr3) < 0) return true;
+    if (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) > maxAttr) return true;
+    return false;
   }
 
   render() {
