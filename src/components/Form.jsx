@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { Component } from 'react';
 import './Form.css';
 import PropTypes from 'prop-types';
@@ -16,11 +17,23 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
+    const inputCheckbox = (
+      <label htmlFor="trunfo-input">
+        Super Trybe Trunfo
+        <input
+          data-testid="trunfo-input"
+          name="cardTrunfo"
+          type="checkbox"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
+      </label>);
 
     return (
       <form>
@@ -92,16 +105,7 @@ export default class Form extends Component {
           onChange={ onInputChange }
         />
 
-        <label htmlFor="trunfo-input">
-          Super Trybe Trunfo
-          <input
-            data-testid="trunfo-input"
-            name="cardTrunfo"
-            type="checkbox"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        { !hasTrunfo ? inputCheckbox : <p>Você já tem um Super Trunfo em seu baralho</p> }
 
         <Button
           disabled={ isSaveButtonDisabled }
@@ -121,7 +125,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

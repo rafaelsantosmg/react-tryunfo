@@ -46,6 +46,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
     } = this.state;
     const cardObj = {
       cardName,
@@ -56,6 +57,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
     };
     event.preventDefault();
     this.setState((preventDefault) => ({
@@ -68,6 +70,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       isSaveButtonDisabled: true,
+      hasTrunfo: preventDefault.cardTrunfo,
     }));
   }
 
