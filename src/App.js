@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
+import Card from './components/Card';
 import './App.css';
 
 class App extends React.Component {
@@ -8,9 +9,9 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -23,7 +24,9 @@ class App extends React.Component {
   onInputChange({ target }) {
     const { name, checked } = target;
     const value = target.type === 'checkbox' ? checked : target.value;
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+    });
   }
 
   onSaveButtonClick() {
@@ -72,6 +75,16 @@ class App extends React.Component {
           </div>
           <div className="preview">
             <h2>Preview</h2>
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardTrunfo={ cardTrunfo }
+              cardRare={ cardRare }
+            />
           </div>
         </main>
       </div>
