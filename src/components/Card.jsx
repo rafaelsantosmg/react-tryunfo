@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 export default class Card extends Component {
   render() {
@@ -12,7 +13,21 @@ export default class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      visibleButtonDel,
+      removeCard,
     } = this.props;
+
+    const btnClear = (
+      <Button
+        id="delete-button"
+        disabled={ false }
+        btnType="button"
+        onClick={ () => removeCard(cardName) }
+      >
+        Excluir
+      </Button>
+    );
+
     return (
       <div className="card-trunfo">
         <p data-testid="name-card">{ cardName }</p>
@@ -23,6 +38,9 @@ export default class Card extends Component {
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{ cardRare }</p>
         { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+        <div>
+          { visibleButtonDel && btnClear }
+        </div>
       </div>
     );
   }
@@ -37,4 +55,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  visibleButtonDel: PropTypes.bool.isRequired,
+  removeCard: PropTypes.func.isRequired,
 };

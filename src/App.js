@@ -18,10 +18,17 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       saveCards: [],
+      isDeleteButtonTrue: true,
+      filterCards: {
+        name: '',
+        rare: 'todas',
+        isTrunfo: false,
+      },
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.saveValidate = this.saveValidate.bind(this);
+    this.onRemoveButtonClick = this.onRemoveButtonClick.bind(this);
   }
 
   onInputChange({ target }) {
@@ -37,6 +44,7 @@ class App extends React.Component {
   }
 
   onSaveButtonClick(event) {
+    event.preventDefault();
     const {
       cardName,
       cardDescription,
@@ -59,7 +67,6 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
     };
-    event.preventDefault();
     this.setState((preventDefault) => ({
       saveCards: preventDefault.saveCards.concat(cardObj),
       cardName: '',
@@ -71,6 +78,15 @@ class App extends React.Component {
       cardRare: 'normal',
       isSaveButtonDisabled: true,
       hasTrunfo: preventDefault.cardTrunfo,
+    }));
+  }
+
+  onRemoveButtonClick(cardName) {
+    const { saveCards } = this.state;
+    this.setState(() => ({
+      saveCards: saveCards.filter((card) => card.cardName !== cardName),
+      cardTrunfo: false,
+      hasTrunfo: false,
     }));
   }
 
@@ -108,9 +124,11 @@ class App extends React.Component {
         hasTrunfo,
         isSaveButtonDisabled,
         saveCards,
+        isDeleteButtonTrue,
       },
       onInputChange,
       onSaveButtonClick,
+      onRemoveButtonClick,
     } = this;
 
     return (
@@ -146,6 +164,8 @@ class App extends React.Component {
               cardImage={ cardImage }
               cardTrunfo={ cardTrunfo }
               cardRare={ cardRare }
+              visibleButtonDel={ !isDeleteButtonTrue }
+              removeCard={ () => onRemoveButtonClick(cardName) }
             />
           </div>
         </main>
@@ -161,7 +181,10 @@ class App extends React.Component {
               cardImage={ card.cardImage }
               cardTrunfo={ card.cardTrunfo }
               cardRare={ card.cardRare }
-            />)) }
+              visibleButtonDel={ isDeleteButtonTrue }
+              removeCard={ onRemoveButtonClick }
+            />
+            )) }
         </div>
       </div>
     );

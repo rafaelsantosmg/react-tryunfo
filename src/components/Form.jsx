@@ -36,7 +36,7 @@ export default class Form extends Component {
       </label>);
 
     return (
-      <form>
+      <form onSubmit={ onSaveButtonClick }>
         <h2>Adicionar nova carta</h2>
         <Input
           id="name-input"
@@ -108,9 +108,13 @@ export default class Form extends Component {
         { !hasTrunfo ? inputCheckbox : <p>Você já tem um Super Trunfo em seu baralho</p> }
 
         <Button
+          id="save-button"
           disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        />
+          btnType="submit"
+          onClick={ () => {} }
+        >
+          Salvar
+        </Button>
       </form>
     );
   }
