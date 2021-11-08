@@ -103,6 +103,7 @@ export default class Form extends Component {
           name="cardRare"
           value={ cardRare }
           onChange={ onInputChange }
+          all={ false }
         />
 
         { !hasTrunfo ? inputCheckbox : <p>Você já tem um Super Trunfo em seu baralho</p> }

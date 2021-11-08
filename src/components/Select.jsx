@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Select extends Component {
   render() {
-    const { id, name, value, onChange } = this.props;
+    const { id, name, value, onChange, all } = this.props;
     return (
       <select
         data-testid={ id }
@@ -11,6 +11,7 @@ class Select extends Component {
         value={ value }
         onChange={ onChange }
       >
+        { all && <option value="todas">Todas</option> }
         <option value="normal">Normal</option>
         <option value="raro">Raro</option>
         <option value="muito raro">Muito Raro</option>
@@ -26,4 +27,5 @@ Select.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  all: PropTypes.bool.isRequired,
 };
