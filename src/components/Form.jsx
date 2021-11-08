@@ -48,15 +48,18 @@ export default class Form extends Component {
           Nome
         </Input>
 
-        <Input
-          id="description-input"
-          name="cardDescription"
-          type="textarea"
-          value={ cardDescription }
-          onChange={ onInputChange }
-        >
+        <label htmlFor="description-input">
           Descrição
-        </Input>
+          <textarea
+            id="description-input"
+            name="cardDescription"
+            value={ cardDescription }
+            onChange={ onInputChange }
+            cols="30"
+            rows="3"
+            maxLength="130"
+          />
+        </label>
 
         <Input
           id="attr1-input"
