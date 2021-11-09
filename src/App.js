@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
-// import FilterCard from './components/FilterCard';
+import FilterCard from './components/FilterCard';
 import './App.css';
 
 class App extends React.Component {
@@ -19,31 +19,31 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       saveCards: [],
-      // filterCards: {
-      //   name: '',
-      //   rare: 'todas',
-      //   isTrunfo: false,
-      // },
+      filterCards: {
+        name: '',
+        rare: 'todas',
+        isTrunfo: false,
+      },
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.saveValidate = this.saveValidate.bind(this);
     this.onRemoveButtonClick = this.onRemoveButtonClick.bind(this);
-    // this.handleFilter = this.handleFilter.bind(this);
-    // this.searchCard = this.searchCard.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+    this.searchCard = this.searchCard.bind(this);
   }
 
-  // handleFilter({ target }) {
-  //   const { name, checked } = target;
-  //   const { filterCards } = this.state;
-  //   const value = target.type === 'checkbox' ? checked : target.value;
-  //   this.setState({
-  //     filterCards: {
-  //       ...filterCards,
-  //       [name]: value,
-  //     },
-  //   });
-  // }
+  handleFilter({ target }) {
+    const { name, checked } = target;
+    const { filterCards } = this.state;
+    const value = target.type === 'checkbox' ? checked : target.value;
+    this.setState({
+      filterCards: {
+        ...filterCards,
+        [name]: value,
+      },
+    });
+  }
 
   onSaveButtonClick(event) {
     event.preventDefault();
@@ -126,20 +126,20 @@ class App extends React.Component {
     return false;
   }
 
-  // searchCard() {
-  //   const {
-  //     saveCards,
-  //     filterCards: {
-  //       name,
-  //       rare,
-  //       isTrunfo,
-  //     },
-  //   } = this.state;
-  //   return saveCards.filter((card) => (name === ''
-  //     ? saveCards : card.cardName.includes(name)))
-  //     .filter((card) => (rare === 'todas' ? saveCards : card.cardRare === rare))
-  //     .filter((card) => (card.cardTrunfo === isTrunfo));
-  // }
+  searchCard() {
+    const {
+      saveCards,
+      filterCards: {
+        name,
+        rare,
+        isTrunfo,
+      },
+    } = this.state;
+    return saveCards.filter((card) => (name === ''
+      ? saveCards : card.cardName.includes(name)))
+      .filter((card) => (rare === 'todas' ? saveCards : card.cardRare === rare))
+      .filter((card) => (card.cardTrunfo === isTrunfo ? saveCards : !isTrunfo));
+  }
 
   render() {
     const {
@@ -154,12 +154,15 @@ class App extends React.Component {
         cardTrunfo,
         hasTrunfo,
         isSaveButtonDisabled,
-        saveCards,
+        filterCards,
       },
       onInputChange,
       onSaveButtonClick,
       onRemoveButtonClick,
+      handleFilter,
+      searchCard,
     } = this;
+    const renderCards = searchCard();
     return (
       <div className="page">
         <header className="header">
@@ -200,7 +203,7 @@ class App extends React.Component {
         </main>
         <div className="cards">
           { onSaveButtonClick
-            && saveCards.map((card) => (<Card
+            && renderCards.map((card) => (<Card
               key={ card.cardName }
               cardName={ card.cardName }
               cardDescription={ card.cardDescription }
@@ -214,6 +217,15 @@ class App extends React.Component {
               removeCard={ () => onRemoveButtonClick(card.cardName) }
             />
             )) }
+        </div>
+        <div>
+          <FilterCard
+            filterName={ filterCards.name }
+            handleFilter={ handleFilter }
+            filterRare={ filterCards.rare }
+            isTrunfo={ filterCards.isTrunfo }
+            searchCard={ () => searchCard }
+          />
         </div>
       </div>
     );
