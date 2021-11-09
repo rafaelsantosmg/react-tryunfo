@@ -18,12 +18,11 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       saveCards: [],
-      isDeleteButtonTrue: true,
-      filterCards: {
-        name: '',
-        rare: 'todas',
-        isTrunfo: false,
-      },
+      // filterCards: {
+      //   name: '',
+      //   rare: 'todas',
+      //   isTrunfo: false,
+      // },
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
@@ -124,7 +123,6 @@ class App extends React.Component {
         hasTrunfo,
         isSaveButtonDisabled,
         saveCards,
-        isDeleteButtonTrue,
       },
       onInputChange,
       onSaveButtonClick,
@@ -164,8 +162,8 @@ class App extends React.Component {
               cardImage={ cardImage }
               cardTrunfo={ cardTrunfo }
               cardRare={ cardRare }
-              visibleButtonDel={ !isDeleteButtonTrue }
-              removeCard={ () => onRemoveButtonClick(cardName) }
+              visibleButtonDel={ false }
+              removeCard={ () => {} }
             />
           </div>
         </main>
@@ -181,8 +179,8 @@ class App extends React.Component {
               cardImage={ card.cardImage }
               cardTrunfo={ card.cardTrunfo }
               cardRare={ card.cardRare }
-              visibleButtonDel={ isDeleteButtonTrue }
-              removeCard={ onRemoveButtonClick }
+              visibleButtonDel
+              removeCard={ () => onRemoveButtonClick(card.cardName) }
             />
             )) }
         </div>

@@ -55,6 +55,11 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  visibleButtonDel: PropTypes.bool.isRequired,
-  removeCard: PropTypes.func.isRequired,
+  visibleButtonDel: PropTypes.bool,
+  removeCard: PropTypes.func,
+};
+
+Card.defaultProps = {
+  visibleButtonDel: false,
+  removeCard: () => {},
 };
