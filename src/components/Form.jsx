@@ -48,15 +48,18 @@ export default class Form extends Component {
           Nome
         </Input>
 
-        <Input
-          id="description-input"
-          name="cardDescription"
-          type="textarea"
-          value={ cardDescription }
-          onChange={ onInputChange }
-        >
+        <label htmlFor="description-input">
           Descrição
-        </Input>
+          <textarea
+            data-testid="description-input"
+            name="cardDescription"
+            value={ cardDescription }
+            onChange={ onInputChange }
+            cols="30"
+            rows="3"
+            maxLength="130"
+          />
+        </label>
 
         <Input
           id="attr1-input"
@@ -103,6 +106,7 @@ export default class Form extends Component {
           name="cardRare"
           value={ cardRare }
           onChange={ onInputChange }
+          all={ false }
         />
 
         { !hasTrunfo ? inputCheckbox : <p>Você já tem um Super Trunfo em seu baralho</p> }

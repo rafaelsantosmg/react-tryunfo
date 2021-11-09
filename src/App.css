@@ -1,21 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
 .header {
   text-align: center;
 }
 
 .page {
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-.main {
+.main-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.form-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 
 .form, .preview-card {
   border: 1px solid black;
   margin: 10px;
   padding: 20px;
-  width: 40%;
+  width: 50%;
 }
