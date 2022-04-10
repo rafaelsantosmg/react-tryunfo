@@ -32,3 +32,35 @@ Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa 
   * Jogar com o baralho criado.
 
 ### Projeto feito no módulo de Front-End do Curso de Desenvolvimento WEB da TRYBE.
+
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:tryber/sd-016-a-project-tryunfo.git
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd recipes-app
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start
+```
+
+Acesse no navegador
+
+```bash
+  http://localhost:3000/
+```
