@@ -44,7 +44,7 @@ Clone o projeto
 Entre no diretório do projeto
 
 ```bash
-  cd recipes-app
+  cd react-tryunfo
 ```
 
 Instale as dependências
