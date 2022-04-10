@@ -38,7 +38,7 @@ Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa 
 Clone o projeto
 
 ```bash
-  git clone git@github.com:tryber/sd-016-a-project-tryunfo.git
+  git clone git@github.com:rafaelsantosmg/react-tryunfo.git
 ```
 
 Entre no diretório do projeto
